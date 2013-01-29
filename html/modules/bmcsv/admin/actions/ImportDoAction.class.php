@@ -41,14 +41,9 @@ class bmcsv_ImportDoAction extends bmcsv_ImportAction
 		if (isset($_POST['back'])) {
 			return $this->getDefaultView();
 		}
-		/// csv file check
-		if (isset($_SESSION['csvfilename']) &&
-			count($_SESSION['csvfilename'])
-		) {
-			$this->csvFName = $_SESSION['csvfilename'];
-			return BMCSV_FRAME_VIEW_SUCCESS;
-		}
-		return $this->getDefaultView();
+		$this->csvFName = xoops_getrequest("uploaded_filename");
+		return BMCSV_FRAME_VIEW_SUCCESS;
+//		return $this->getDefaultView();
 	}
 
 	private function arrayToDb(&$mHandler, &$import_key, &$data)
