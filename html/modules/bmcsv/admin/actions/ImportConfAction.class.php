@@ -32,11 +32,25 @@ class bmcsv_ImportConfAction extends bmcsv_ImportAction
 	function execute()
 	{
 		$this->_getHandler();
+		$acceptMime = array(
+			'text/x-comma-separated-values',
+			'text/comma-separated-values',
+			'application/octet-stream',
+			'application/vnd.ms-excel',
+			'text/x-csv',
+			'text/csv',
+			'application/csv',
+			'application/excel',
+			'application/vnd.msexcel',
+			'application/x-csv'
+		);
 
 		/// csv file check
-		if (isset($_FILES['bmcsv_csv_file']) &&
-			$_FILES['bmcsv_csv_file']['error'] == 0){
-			return BMCSV_FRAME_VIEW_SUCCESS;
+		if (isset($_FILES['bmcsv_csv_file'])){
+			$ret = true;
+			if (!in_array($_FILES['bmcsv_csv_file']['type'],$acceptMime)) $ret = false;
+			if ($_FILES['bmcsv_csv_file']['error'] != 0) $ret = false;
+			if ($ret) return BMCSV_FRAME_VIEW_SUCCESS;
 		}
 		return $this->getDefaultView();
 	}
