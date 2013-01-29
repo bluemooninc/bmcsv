@@ -20,4 +20,5 @@ define("_AM_BMCSV_DATA_UPLOAD_CONF", "Proceed to check contents");
 
 define("_AM_BMCSV_TIPS1_IMPORT_CSV", "Check the Primary key for Update or Inset");
 define("_AM_BMCSV_TIPS2_IMPORT_CSV", "Red strings will be update");
-define("_AM_BMCSV_IMPORT_MESSAGE", "Sample is below and other %d records will be import. Do you want to procced?");
+define("_AM_BMCSV_IMPORT_MESSAGE", "Sample is below and other %d records will be import. Do you want to proceed?");
+define("_AM_BMCSV_DATA_CSVUPLOAD_DONE", "Import processing complete");

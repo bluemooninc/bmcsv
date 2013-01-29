@@ -25,3 +25,6 @@ define("_AM_BMCSV_IMPORT_MESSAGE", "以下に表示されているレコード�
 
 define("_AM_BMCSV_IMPORT_CSV_DO", "インポートの実行");
 define("_AM_BMCSV_IMPORT_CSV_BACK", "CSVファイルの選択に戻る");
+define("_AM_BMCSV_DATA_CSVUPLOAD_DONE", "インポートが完了しました");
+
+
