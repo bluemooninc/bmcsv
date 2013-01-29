@@ -85,6 +85,11 @@ class bmcsv_ImportConfAction extends bmcsv_ImportAction
 			$_line = $iCsv->loadCSV($fp, $csv_encoding);
 			if ($lineCount > 0 && $_line) {
 				$csvData[] = $iCsv->loadOneLineToArray($_line, $iPrimary, $this->mKey, $this->mHandler);
+			} else {
+				$csvHeader = explode(",",preg_replace("/\"/","",trim($_line)));
+				if( count(array_intersect($csvHeader,$this->mKey)) != count($this->mKey) ){
+					break;
+				}
 			}
 			$lineCount++;
 		}

@@ -85,7 +85,7 @@ class bmcsv_AbstractExportAction extends bmcsv_Action
 
 	public function executeDownload()
 	{
-		$filename = $this->mParameter['tableName'] ."_". $this->mParameter['moduleName'] . ".csv";
+		$filename = $this->mParameter['moduleName'] ."_". $this->mParameter['tableName'] . ".csv";
 		// for Windows in japanese
 		if (strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2) === 0) {
 			mb_convert_variables('SJIS', _CHARSET, $this->textBuffer);

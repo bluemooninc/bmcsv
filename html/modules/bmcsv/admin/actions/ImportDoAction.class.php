@@ -39,7 +39,7 @@ class bmcsv_ImportDoAction extends bmcsv_ImportAction
 		$this->_getHandler();
 		/// back
 		if (isset($_POST['back'])) {
-			return $this->getDefaultView($controller, $xoopsUser);
+			return $this->getDefaultView();
 		}
 		/// csv file check
 		if (isset($_SESSION['csvfilename']) &&
