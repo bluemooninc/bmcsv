@@ -76,6 +76,7 @@ class bmcsv_ImportConfAction extends bmcsv_ImportAction
 		}else{
 			$csv_encoding = '';
 		}
+		ini_set('auto_detect_line_endings', 1);
 		$lineCount=0;
 		$fp = fopen($csvFName, 'r');
 		$iCsv = new importCsv($this->mKey);

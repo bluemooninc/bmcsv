@@ -50,7 +50,7 @@ class importCsv
 	{
 		$csvLine = "";
 		while (!feof($fp)) {
-			$_line = fgets($fp);
+			$_line = rtrim(fgets($fp));
 			if ($csv_encoding) {
 				mb_convert_variables(_CHARSET, $csv_encoding, $_line);
 			}
@@ -78,7 +78,6 @@ class importCsv
 				$space_list .= $c;
 			}
 		}
-
 		$line_end = "";
 		if (preg_match("/([$space_list]+)\$/sS", $csv, $match)) {
 			$line_end = $match[1];
@@ -144,8 +143,10 @@ class importCsv
 				}
 				// remove trailing spaces
 				$field = preg_replace("/[$space_list]+\$/S", '', $field);
-				if ($csv[$index] == $delimiter) {
-					$index++;
+				if (isset($csv[$index])){
+					if ($csv[$index] == $delimiter) {
+						$index++;
+					}
 				}
 			}
 			$retval[] = $field;
@@ -192,7 +193,8 @@ class importCsv
 				$import_data['value'][] = array('field' => $key, 'var' => $csv_value, 'update' => $mUpdate);
 			}
 		}
-		if (!$import_data['mUpdate'] && !$object && $import_data['value']){
+		if ( !$object && $import_data['value']){
+			$import_data['mUpdate'] = false;
 			$import_data['mCreate'] = true;
 		}
 		return $import_data;
@@ -202,7 +204,7 @@ class importCsv
 		$root = XCube_Root::getSingleton();
 		$db = $root->mController->getDB();
 		$sql = "SHOW INDEX FROM " . $db->prefix($table) . " WHERE Key_name = 'PRIMARY'";
-		$gp = $db->query($sql);
+		$gp = $db->queryF($sql);
 		$cgp = mysql_num_rows($gp);
 		if($cgp > 0){
 			$agp = mysql_fetch_array($gp);
